@@ -1,4 +1,4 @@
-package dev.rynwllngtn.db;
+package dev.rynwllngtn.utils;
 
 import dev.rynwllngtn.exceptions.database.DatabaseException;
 
@@ -7,9 +7,21 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
 
-public class Db {
+public class DatabaseUtil {
 
     private static Connection connection = null;
+
+    private static Properties loadProperties() {
+
+        try (FileInputStream inputStream = new FileInputStream("db.properties")) {
+            Properties properties = new Properties();
+            properties.load(inputStream);
+            return properties;
+        }
+        catch (IOException e) {
+            throw new DatabaseException(e.getMessage());
+        }
+    }
 
     public static Connection getConnection() {
 
@@ -23,6 +35,7 @@ public class Db {
                 throw new DatabaseException(e.getMessage());
             }
         }
+
         return connection;
     }
 
@@ -35,18 +48,6 @@ public class Db {
             catch (SQLException e) {
                 throw new DatabaseException(e.getMessage());
             }
-        }
-    }
-
-    private static Properties loadProperties() {
-
-        try (FileInputStream inputStream = new FileInputStream("db.properties")) {
-            Properties properties = new Properties();
-            properties.load(inputStream);
-            return properties;
-        }
-        catch (IOException e) {
-            throw new DatabaseException(e.getMessage());
         }
     }
 

@@ -5,6 +5,7 @@ import lombok.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -17,6 +18,7 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1460773308039941743L;
 
     @EqualsAndHashCode.Include
+    UUID id = UUID.randomUUID();
     String cpf;
     String password;
     String name;

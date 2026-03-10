@@ -20,7 +20,7 @@ public abstract class Account implements Serializable {
     private static final long serialVersionUID = -5407895841045304833L;
 
     @EqualsAndHashCode.Include
-    protected UUID id;
+    protected UUID id = UUID.randomUUID();
     protected User holder;
     protected BigDecimal balance;
     protected BigDecimal transferLimit;

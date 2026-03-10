@@ -3,11 +3,9 @@ package dev.rynwllngtn.enums.account;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.io.Serializable;
-
 @Getter
 @AllArgsConstructor
-public enum AccountType implements Serializable {
+public enum AccountType {
 
     NONE(0, null),
     CHECKING(1, "Corrente"),
