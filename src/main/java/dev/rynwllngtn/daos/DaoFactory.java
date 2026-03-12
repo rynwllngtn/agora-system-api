@@ -13,7 +13,7 @@ public class DaoFactory {
     }
 
     public static AccountDao createAccountDao() {
-        return new AccountDaoImplementation();
+        return new AccountDaoImplementation(DatabaseUtil.getConnection());
     }
 
 }

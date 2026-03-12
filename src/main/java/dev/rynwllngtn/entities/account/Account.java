@@ -30,13 +30,15 @@ public abstract class Account implements Serializable {
     public Account(User holder) {
         this.holder = holder;
         balance = BigDecimal.ZERO;
+        transferLimit = balance;
+        transferLimitCap = transferLimit;
     }
 
     @Override
     public String toString() {
-        return ("ID: " + id + "\n" +
-                "Owner: " + holder.getName() + "\n" +
-                "Transaction Limit: " + transferLimit +  " / " + transferLimitCap + "\n" +
+        return ("Account ID: " + id + "\n" +
+                "Holder:\n\n" + holder + "\n\n" +
+                "Transaction Limit: " + transferLimit +  " | " + transferLimitCap + "\n" +
                 "Balance: " + balance);
     }
 

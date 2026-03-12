@@ -18,13 +18,13 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1460773308039941743L;
 
     @EqualsAndHashCode.Include
-    UUID id = UUID.randomUUID();
-    String cpf;
-    String password;
-    String name;
-    String email;
-    Date birthDate;
-    boolean isActive = true;
+    protected UUID id = UUID.randomUUID();
+    protected String cpf;
+    protected String password;
+    protected String name;
+    protected String email;
+    protected Date birthDate;
+    protected boolean isActive = true;
 
     public User(String cpf, String password) {
         this.cpf = cpf;
@@ -36,7 +36,8 @@ public class User implements Serializable {
     public String toString() {
 
         if (isActive) {
-            return ("CPF: " + cpf + "\n" +
+            return ("ID: " + id + "\n" +
+                    "CPF: " + cpf + "\n" +
                     "Password: " + password + "\n" +
                     "Name: " + name + "\n" +
                     "Email: " + email + "\n" +

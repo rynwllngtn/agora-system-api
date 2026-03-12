@@ -8,10 +8,10 @@ import java.util.UUID;
 
 public class UserUtil {
 
-    public static User instantiateUser(ResultSet resultSet) throws SQLException {
+    public static User instantiateUser(ResultSet resultSet, String id) throws SQLException {
 
         User user = new User();
-        user.setId(UUID.fromString(resultSet.getString("Id")));
+        user.setId(UUID.fromString(resultSet.getString(id)));
         user.setCpf(resultSet.getString("Cpf"));
         user.setPassword(resultSet.getString("Password"));
         user.setName(resultSet.getString("Name"));
@@ -19,6 +19,10 @@ public class UserUtil {
         user.setBirthDate(resultSet.getDate("BirthDate"));
         user.setActive(resultSet.getBoolean("IsActive"));
         return user;
+    }
+
+    public static User instantiateUser(ResultSet resultSet) throws SQLException {
+        return instantiateUser(resultSet, "Id");
     }
 
 }
