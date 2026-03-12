@@ -42,12 +42,12 @@ Caso queira rodar o código e ver a comunicação com o banco na sua máquina:
    ```bash
    git clone https://github.com/rynwllngtn/agora-system-api.git
    ```
-3. Faça o download das bibliotecas usando:
+2. Faça o download das bibliotecas usando:
    ```
    mvn clean install
    ```
-   Ou use as ferramentas da sua IDE (como no Intellij).
-2. Renomeie o arquivo `db.example.properties` para `db.properties` e insira as suas credenciais do MySQL local.
+   Ou use as ferramentas da sua IDE (como no IntelliJ).
+3. Renomeie o arquivo `db.example.properties` para `db.properties` e insira as suas credenciais do MySQL local.
 
 4. Compile e execute a classe Main (que contém o script de teste de integração).
 

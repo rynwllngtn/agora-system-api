@@ -5,6 +5,14 @@ Todas as mudanças notáveis na API do **Agora System** serão documentadas nest
 O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 
 ---
+
+## [Unreleased]
+
+### Changed
+- Alterado anotações nas entidades `User` e `Account`;
+
+---
+
 ## [0.1.1] - 2026-03-12
 
 ### Changed
@@ -21,6 +29,8 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.
 
 # Fixed
 - Corrigido versionamento errado em `README` e `CHANGELOG`
+
+---
 
 ## [0.1.0] - 2026-03-11
 

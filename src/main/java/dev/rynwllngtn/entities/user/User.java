@@ -21,12 +21,23 @@ public class User implements Serializable {
 
     @EqualsAndHashCode.Include
     @Id
-    protected UUID id = UUID.randomUUID();
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(updatable = false, nullable = false)
+    protected UUID id;
+
+    @Column(length = 11, nullable = false)
     protected String cpf;
+
+    @Column(nullable = false)
     protected String password;
+
     protected String name;
     protected String email;
+
+    @Column(nullable = false)
     protected Date birthDate;
+
+    @Column(nullable = false)
     protected boolean isActive = true;
 
     public User(String cpf, String password) {
