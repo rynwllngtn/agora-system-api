@@ -34,7 +34,7 @@ public class User implements Serializable {
     protected String name;
     protected String email;
 
-    @Column(nullable = false)
+    @Column(name = "birthDate", nullable = false)
     protected Date birthDate;
 
     @Column(nullable = false)
