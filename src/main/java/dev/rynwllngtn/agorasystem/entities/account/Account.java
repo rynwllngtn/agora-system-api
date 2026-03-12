@@ -1,7 +1,7 @@
-package dev.rynwllngtn.entities.account;
+package dev.rynwllngtn.agorasystem.entities.account;
 
-import dev.rynwllngtn.entities.user.User;
-import dev.rynwllngtn.enums.account.AccountType;
+import dev.rynwllngtn.agorasystem.entities.user.User;
+import dev.rynwllngtn.agorasystem.enums.account.AccountType;
 import jakarta.persistence.*;
 import lombok.*;
 

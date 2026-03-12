@@ -1,4 +1,4 @@
-package dev.rynwllngtn.entities.user;
+package dev.rynwllngtn.agorasystem.entities.user;
 
 import jakarta.persistence.*;
 import lombok.*;

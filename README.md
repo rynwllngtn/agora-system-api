@@ -2,7 +2,7 @@
 
 ![Java](https://img.shields.io/badge/Java-25-orange?style=for-the-badge&logo=java)
 ![Status](https://img.shields.io/badge/Status-EM%20EVOLUÇÂO-success?style=for-the-badge)
-![Version](https://img.shields.io/badge/version-v0.1.1-blue?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-v0.2.0-blue?style=for-the-badge)
 
 O Agora System é um projeto de simulação bancária. Ele é um projeto para os meus estudos de programação e a intenção e evoluí-lo junto comigo.
 
@@ -10,8 +10,8 @@ O objetivo aqui não é criar um banco real, mas sim colocar em prática os conc
 
 ---
 
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
-![Hibernate](https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=white)
 
 ---
 

@@ -6,10 +6,15 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.
 
 ---
 
-## [Unreleased]
+## [0.2.0] - 2026-03-12
 
 ### Changed
+- Configuração do Spring Boot via `application.properties`
+- Template `application.example.properties` adicionado para a gestão de credenciais.
 - Alterado anotações nas entidades `User` e `Account`;
+
+### Removed
+- Exclusão dos arquivos `persistence.xml` e `persistence.example.xml`.
 
 ---
 
@@ -22,7 +27,7 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.
 - Template `persistence.example.xml` adicionado para a gestão de credenciais.
 
 ## Removed
-- Exclusão dos arquivos `db.properties` e `db.example.properties`.
+- Exclusão dos arquivos `db.properties` e `db.example.properties`
 - Remoção de todo o código **JDBC puro** (incluindo `Connection`, `PreparedStatement` e `ResultSet`).
 - Remoção das implementações dos DAOs (`UserDaoImplementation` e `AccountDaoImplementation`).
 - Remoção das classes utilitárias (`DatabaseUtil`, `UserUtil`, `AccountUtil`), pois o Hibernate passa a fazer as conexões de forma nativa.

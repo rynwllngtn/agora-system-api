@@ -1,4 +1,4 @@
-package dev.rynwllngtn.enums.account;
+package dev.rynwllngtn.agorasystem.enums.account;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

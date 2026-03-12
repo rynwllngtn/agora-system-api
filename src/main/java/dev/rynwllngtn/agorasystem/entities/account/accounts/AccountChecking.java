@@ -1,8 +1,8 @@
-package dev.rynwllngtn.entities.account.accounts;
+package dev.rynwllngtn.agorasystem.entities.account.accounts;
 
-import dev.rynwllngtn.entities.account.Account;
-import dev.rynwllngtn.entities.user.User;
-import dev.rynwllngtn.enums.account.AccountType;
+import dev.rynwllngtn.agorasystem.entities.account.Account;
+import dev.rynwllngtn.agorasystem.entities.user.User;
+import dev.rynwllngtn.agorasystem.enums.account.AccountType;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import lombok.NoArgsConstructor;

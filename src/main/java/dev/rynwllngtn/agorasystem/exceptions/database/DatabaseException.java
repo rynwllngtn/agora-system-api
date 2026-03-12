@@ -1,6 +1,6 @@
-package dev.rynwllngtn.exceptions.database;
+package dev.rynwllngtn.agorasystem.exceptions.database;
 
-import dev.rynwllngtn.exceptions.AgoraSystemException;
+import dev.rynwllngtn.agorasystem.exceptions.AgoraSystemException;
 
 public class DatabaseException extends AgoraSystemException {
     public DatabaseException(String message) {
