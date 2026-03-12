@@ -1,0 +1,21 @@
+# Changelog
+
+Todas as mudanças notáveis na API do **Agora System** serão documentadas neste arquivo.
+
+O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
+
+---
+
+## [1.0.0] - 2026-03-11
+
+### Added
+- Implementação completa dos métodos CRUD utilizando **JDBC puro**.
+- Estruturação arquitetural com base no **Padrão DAO (Data Access Object)**, criando interfaces isoladas para `User` e `Account`.
+- Criação da classe `DaoFactory` para isolar a instanciação das implementações de banco de dados.
+- Implementação de um cache (HashMap) no método `findAll` de Contas para garantir a identidade única do objeto `User` ao montar relacionamentos de Banco de Dados.
+- Criação do `DatabaseUtil` para gerenciar de forma segura a abertura e fechamento das conexões e statements do MySQL.
+- Script de Testes na classe `Main` para validar as operações de inserção, busca, atualização e exclusão.
+
+### Changed
+- Adaptação das classes de Entidade (`User`, `Account`) para conversão de tipos seguros na comunicação com o banco.
+- Sobrecarga de métodos no `UserUtil` para permitir buscas com *Aliases* de colunas dinâmicos (evitando colisão de IDs no SQL).
