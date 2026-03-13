@@ -19,10 +19,7 @@ import java.util.UUID;
 @Table(name = "account")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "account_type", discriminatorType = DiscriminatorType.STRING)
-public abstract class Account implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = -5407895841045304833L;
+public abstract class Account {
 
     @EqualsAndHashCode.Include
     @Id
@@ -44,7 +41,7 @@ public abstract class Account implements Serializable {
     protected BigDecimal transferLimitCap;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "account_type", length = 16, insertable=false, updatable=false)
+    @Column(name = "account_type", length = 16, insertable = false, updatable = false)
     protected AccountType accountType;
 
     public Account(User holder) {

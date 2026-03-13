@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class UserServiceImplementation implements UserService{
+public class UserServiceImplementation implements UserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -24,6 +24,11 @@ public class UserServiceImplementation implements UserService{
     public User findById(UUID id) {
         Optional<User> user = userRepository.findById(id);
         return user.get();
+    }
+
+    @Override
+    public User insert(User user) {
+        return userRepository.save(user);
     }
 
 }

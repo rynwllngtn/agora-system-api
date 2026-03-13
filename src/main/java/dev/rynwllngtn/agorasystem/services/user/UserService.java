@@ -13,4 +13,6 @@ public interface UserService {
 
     public User findById(UUID id);
 
+    public User insert(User user);
+
 }

@@ -14,9 +14,6 @@ import java.io.Serial;
 @DiscriminatorValue("SAVING")
 public class AccountSaving extends Account {
 
-    @Serial
-    private static final long serialVersionUID = -5175368657497471716L;
-
     public AccountSaving(User holder) {
         super(holder);
         this.accountType = AccountType.SAVING;

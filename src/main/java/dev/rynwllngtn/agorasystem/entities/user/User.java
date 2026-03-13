@@ -3,8 +3,6 @@ package dev.rynwllngtn.agorasystem.entities.user;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
@@ -14,10 +12,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-public class User implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = 1460773308039941743L;
+@Table(name = "user")
+public class User {
 
     @EqualsAndHashCode.Include
     @Id
