@@ -1,5 +1,6 @@
 package dev.rynwllngtn.agorasystem.entities.account;
 
+import dev.rynwllngtn.agorasystem.Test.AccountRequest;
 import dev.rynwllngtn.agorasystem.entities.user.User;
 import dev.rynwllngtn.agorasystem.enums.account.AccountType;
 import jakarta.persistence.*;
@@ -49,6 +50,13 @@ public abstract class Account {
         balance = BigDecimal.ZERO;
         transferLimit = balance;
         transferLimitCap = transferLimit;
+    }
+
+    public Account(AccountRequest accountRequest) {
+        holder = accountRequest.getHolder();
+        balance = accountRequest.getBalance();
+        transferLimit = accountRequest.getTransferLimit();
+        transferLimitCap = accountRequest.getTransferLimitCap();
     }
 
     @Override

@@ -13,4 +13,10 @@ public interface AccountService {
 
     public Account findById(UUID id);
 
+    public Account insert(Account account);
+
+    public void delete(UUID id);
+
+    public Account update(UUID id, Account accountData);
+
 }

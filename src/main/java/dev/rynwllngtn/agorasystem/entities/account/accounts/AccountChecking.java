@@ -1,5 +1,6 @@
 package dev.rynwllngtn.agorasystem.entities.account.accounts;
 
+import dev.rynwllngtn.agorasystem.Test.AccountRequest;
 import dev.rynwllngtn.agorasystem.entities.account.Account;
 import dev.rynwllngtn.agorasystem.entities.user.User;
 import dev.rynwllngtn.agorasystem.enums.account.AccountType;
@@ -19,4 +20,8 @@ public class AccountChecking extends Account {
         this.accountType = AccountType.CHECKING;
     }
 
+    public AccountChecking(AccountRequest accountRequest) {
+        super(accountRequest);
+        this.accountType = AccountType.CHECKING;
+    }
 }

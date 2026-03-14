@@ -1,5 +1,6 @@
 package dev.rynwllngtn.agorasystem.entities.account.accounts;
 
+import dev.rynwllngtn.agorasystem.Test.AccountRequest;
 import dev.rynwllngtn.agorasystem.entities.account.Account;
 import dev.rynwllngtn.agorasystem.entities.user.User;
 import dev.rynwllngtn.agorasystem.enums.account.AccountType;
@@ -16,6 +17,11 @@ public class AccountSaving extends Account {
 
     public AccountSaving(User holder) {
         super(holder);
+        this.accountType = AccountType.SAVING;
+    }
+
+    public AccountSaving(AccountRequest accountRequest) {
+        super(accountRequest);
         this.accountType = AccountType.SAVING;
     }
 

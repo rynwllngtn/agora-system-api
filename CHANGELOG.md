@@ -5,11 +5,12 @@ Todas as mudanças notáveis na API do **Agora System** serão documentadas nest
 O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 
 ---
-## [Unreleased]
+## [0.2.1] - 2026-03-14
 
 ### Added
-- Implementado endpoint PUT para remoção de user.
-- Implementado endpoint DELETE para remoção de user.
+- Adicionado objeto para construção das subclasses de account.
+- Implementado endpoint POST, DELETE e PUT para account.
+- Implementado endpoint DELETE e PUT para user.
 - Implementado endpoint POST para inserção de user com status 201 Created e URI.
 - Implementado classe configuração `DatabaseSeeder`, instanciado ao iniciar o sistema.
 - Adicionado `controller`, `repository` e `service` inicial para entidade Account.
