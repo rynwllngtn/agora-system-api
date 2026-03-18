@@ -5,6 +5,23 @@ Todas as mudanças notáveis na API do **Agora System** serão documentadas nest
 O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 
 ---
+
+## [Unreleased]
+
+### Added
+- Implementado tratamento de exceção para serviço `update`.
+- Implementado tratamento de exceção para serviço `delete`.
+- Implementado tratamento de exceção para serviços `findById`, .
+- Implementado classe recurso `StandardException` para entrega da exceção em formato JSON.
+
+### Changed
+- Alterado retorno do método `findById` para *.orElseThrow*, evitando o uso de try catch.
+
+### Fixed
+- Corrigido camel case em método e atributos.
+
+---
+
 ## [0.2.1] - 2026-03-14
 
 ### Added

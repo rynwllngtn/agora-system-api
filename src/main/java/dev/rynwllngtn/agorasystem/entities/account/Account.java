@@ -1,13 +1,11 @@
 package dev.rynwllngtn.agorasystem.entities.account;
 
-import dev.rynwllngtn.agorasystem.Test.AccountRequest;
+import dev.rynwllngtn.agorasystem.test.AccountRequest;
 import dev.rynwllngtn.agorasystem.entities.user.User;
 import dev.rynwllngtn.agorasystem.enums.account.AccountType;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.UUID;
 

@@ -1,11 +1,7 @@
 package dev.rynwllngtn.agorasystem.controllers.account;
 
-import dev.rynwllngtn.agorasystem.Test.AccountRequest;
+import dev.rynwllngtn.agorasystem.test.AccountRequest;
 import dev.rynwllngtn.agorasystem.entities.account.Account;
-import dev.rynwllngtn.agorasystem.entities.account.accounts.AccountChecking;
-import dev.rynwllngtn.agorasystem.entities.account.accounts.AccountSaving;
-import dev.rynwllngtn.agorasystem.entities.user.User;
-import dev.rynwllngtn.agorasystem.repositories.account.AccountRepository;
 import dev.rynwllngtn.agorasystem.services.account.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

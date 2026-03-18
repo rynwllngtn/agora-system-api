@@ -7,8 +7,14 @@ public class DatabaseException extends AgoraSystemException {
         super(message);
     }
 
-    public static class DatabaseIntegrityException extends DatabaseException {
-        public DatabaseIntegrityException(String message) {
+    public static class ResourceNotFoundException extends DatabaseException {
+        public ResourceNotFoundException(Object object) {
+            super("Resource not found: ID " + object);
+        }
+    }
+
+    public static class UserConstraintException extends DatabaseException {
+        public UserConstraintException(String message) {
             super(message);
         }
     }

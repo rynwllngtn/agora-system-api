@@ -1,10 +1,15 @@
 package dev.rynwllngtn.agorasystem.services.user;
 
 import dev.rynwllngtn.agorasystem.entities.user.User;
+import dev.rynwllngtn.agorasystem.exceptions.database.DatabaseException;
+import dev.rynwllngtn.agorasystem.exceptions.database.DatabaseException.*;
 import dev.rynwllngtn.agorasystem.repositories.user.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -23,7 +28,7 @@ public class UserServiceImplementation implements UserService {
     @Override
     public User findById(UUID id) {
         Optional<User> user = userRepository.findById(id);
-        return user.get();
+        return user.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     @Override
@@ -33,17 +38,34 @@ public class UserServiceImplementation implements UserService {
 
     @Override
     public void delete(UUID id) {
-        userRepository.deleteById(id);
+
+        if (!userRepository.existsById(id)) {
+            throw new ResourceNotFoundException(id);
+        }
+
+        try {
+            userRepository.deleteById(id);
+        }
+        catch (DataIntegrityViolationException e) {
+            throw new UserConstraintException(e.getMessage());
+        }
     }
 
     @Override
     public User update(UUID id, User userData) {
-        User user = userRepository.getReferenceById(id);
-        UpdateData(user, userData);
-        return userRepository.save(user);
+
+        try {
+            User user = userRepository.getReferenceById(id);
+            updateData(user, userData);
+            return userRepository.save(user);
+
+        }
+        catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException(id);
+        }
     }
 
-    private void UpdateData(User user, User userData) {
+    private void updateData(User user, User userData) {
         user.setPassword(userData.getPassword());
         user.setName(userData.getName());
         user.setEmail(userData.getEmail());

@@ -1,4 +1,4 @@
-package dev.rynwllngtn.agorasystem.Test;
+package dev.rynwllngtn.agorasystem.test;
 
 import dev.rynwllngtn.agorasystem.entities.account.Account;
 import dev.rynwllngtn.agorasystem.entities.account.accounts.AccountChecking;
