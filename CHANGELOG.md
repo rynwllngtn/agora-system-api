@@ -6,7 +6,7 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.
 
 ---
 
-## [Unreleased]
+## [0.3.0] - 2026-04-04
 
 ### Added
 - Implementado tratamento de exceção para serviço `update`.
@@ -15,6 +15,8 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.
 - Implementado classe recurso `StandardException` para entrega da exceção em formato JSON.
 
 ### Changed
+- Organização da classe `DatabaseSeeder`, delegando a criação de `User` para método próprio.
+- Domínio da classe `AccountRequest` para DTO.
 - Alterado retorno do método `findById` para *.orElseThrow*, evitando o uso de try catch.
 
 ### Fixed

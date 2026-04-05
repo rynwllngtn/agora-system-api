@@ -29,12 +29,12 @@ public class DatabaseSeeder implements CommandLineRunner {
         }
 
         Random random = new Random();
-        for (int i = 1; i <= 50; i++) {
+        for (int i = 1; i <= 10; i++) {
 
-            String cpf = String.format("%011d", random.nextInt(1000000000));
-            User user = new User(cpf, "password");
-            user.setName(String.format("User Number %d", i));
-            user.setEmail(String.format("user%d@email.com", i));
+            User user = buildUser(String.format("%011d", random.nextInt(1000000000)),
+                                  String.format("User Number %d", i),
+                                  String.format("user%d@email.com", i));
+
             userRepository.save(user);
 
             switch (random.nextInt(4)) {
@@ -53,6 +53,13 @@ public class DatabaseSeeder implements CommandLineRunner {
                 }
             }
         }
+    }
+
+    private User buildUser(String cpf, String name, String email) {
+        User user = new User(cpf, "password");
+        user.setName(name);
+        user.setEmail(email);
+        return user;
     }
 
 }

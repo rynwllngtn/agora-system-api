@@ -1,6 +1,6 @@
 package dev.rynwllngtn.agorasystem.entities.account;
 
-import dev.rynwllngtn.agorasystem.test.AccountRequest;
+import dev.rynwllngtn.agorasystem.dtos.AccountRequest;
 import dev.rynwllngtn.agorasystem.entities.user.User;
 import dev.rynwllngtn.agorasystem.enums.account.AccountType;
 import jakarta.persistence.*;

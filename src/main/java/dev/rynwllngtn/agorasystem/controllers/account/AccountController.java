@@ -1,6 +1,6 @@
 package dev.rynwllngtn.agorasystem.controllers.account;
 
-import dev.rynwllngtn.agorasystem.test.AccountRequest;
+import dev.rynwllngtn.agorasystem.dtos.AccountRequest;
 import dev.rynwllngtn.agorasystem.entities.account.Account;
 import dev.rynwllngtn.agorasystem.services.account.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;

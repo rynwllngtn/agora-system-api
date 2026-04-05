@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: agora-system-core
+
+  datasource:
+    url: [YOUR-DATABASE-URL]
+    username: [YOUR-USERNAME]
+    password: [YOUR-PASSWORD]
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        naming:
+          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+    database-platform: org.hibernate.dialect.MySQLDialect

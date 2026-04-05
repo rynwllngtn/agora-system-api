@@ -58,7 +58,6 @@ public class UserServiceImplementation implements UserService {
             User user = userRepository.getReferenceById(id);
             updateData(user, userData);
             return userRepository.save(user);
-
         }
         catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException(id);
