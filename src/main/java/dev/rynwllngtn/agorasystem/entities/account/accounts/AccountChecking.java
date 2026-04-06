@@ -17,4 +17,5 @@ public class AccountChecking extends Account {
         super(balance, transferLimit, transferLimitCap);
         this.accountType = AccountType.CHECKING;
     }
+
 }

@@ -6,25 +6,26 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.
 
 ---
 
-## [Unreleased]
+## [0.3.1] - 2026-04-06
 
 ### Added
-- Classes de transferência de dados `UserResponseDTO` e `UserReferenceDTO` para abstrair, proteger a entidade User e enxugar o tráfego de dados.
+- Classes de transferência de dados `UserResponseDTO`, `UserCreateRequestDTO` e `UserUpdateRequestDTO` para abstrair e proteger a entidade User.
+- Classes de transferência de dados `AccountResponseDTO`, `AccountCreateRequestDTO` e `AccountUpdateRequestDTO` para blindar o domínio financeiro e enxugar o tráfego de dados da API.
 - Arquivo `schema.sql` para atuar como documentação estática e versionamento da estrutura do banco de dados.
 - Consulta customizada e performática usando Constructor Expression (JPQL) no UserRepository para instanciar DTOs diretamente do banco de dados.
 
 ### Changed
 - Refatoração dos métodos na classe `UserController` (endpoints GET, POST e PUT) para retornarem UserResponseDTO, impedindo o vazamento da entidade principal.
-- Atualização da classe `AccountRequest` para receber um `UserReferenceDTO` em vez da entidade completa.
+- Encapsulamento de regras de negócio na entidade `Account` através de um método customizado de update(), protegendo atributos.
+- Atualização das subclasses `AccountChecking` e `AccountSaving`, simplificando sua estrutura e removendo dependências de dto.
 - Correção de nomenclatura reservada (@Table(name = "users")) e blindagem de CPF na entidade `User`.
 - Atualização da entidade User para utilizar `LocalDate`.
 - Ajuste no relacionamento *@ManyToOne* da entidade `Account` para utilizar *FetchType.LAZY*.
 - Ajuste no `DatabaseSeeder` para utilizar o novo `UserReferenceDTO` durante o povoamento inicial.
 
-
 ### Removed
-- Endpoint inseguro e método findAll() de Utilizadores.
-- Métodos toString() nativos nas entidades para evitar conflitos de carregamento com o Hibernate (StackOverflowError).
+- Endpoint inseguro e método *findAll()* de Utilizadores.
+- Métodos *toString()* não utilizados nas entidades para evitar conflitos de carregamento com o Hibernate.
 
 ---
 
