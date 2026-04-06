@@ -12,12 +12,13 @@ import java.util.UUID;
 @Service
 public interface AccountService {
 
-    public AccountResponseDTO findById(UUID id);
+    Account findById(UUID id);
+    AccountResponseDTO findResponseById(UUID id);
 
-    public Account insert(AccountCreateRequestDTO accountCreateRequestDTO);
+    Account insert(AccountCreateRequestDTO accountCreateRequestDTO);
 
-    public void delete(UUID id);
+    AccountResponseDTO update(UUID id, AccountUpdateRequestDTO accountUpdateRequestDTO);
 
-    public Account update(UUID id, AccountUpdateRequestDTO accountUpdateRequestDTO);
+    void delete(UUID id);
 
 }

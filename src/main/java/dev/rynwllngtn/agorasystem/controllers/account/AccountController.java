@@ -5,7 +5,6 @@ import dev.rynwllngtn.agorasystem.dtos.account.AccountResponseDTO;
 import dev.rynwllngtn.agorasystem.dtos.account.AccountUpdateRequestDTO;
 import dev.rynwllngtn.agorasystem.entities.account.Account;
 import dev.rynwllngtn.agorasystem.services.account.AccountService;
-import dev.rynwllngtn.agorasystem.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +22,7 @@ public class AccountController {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<AccountResponseDTO> findById(@PathVariable UUID id) {
-        AccountResponseDTO accountResponseDTO = accountService.findById(id);
+        AccountResponseDTO accountResponseDTO = accountService.findResponseById(id);
         return ResponseEntity.ok().body(accountResponseDTO);
     }
 
@@ -35,17 +34,16 @@ public class AccountController {
         return ResponseEntity.created(uri).body(accountResponseDTO);
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<AccountResponseDTO> update(@PathVariable UUID id, @RequestBody AccountUpdateRequestDTO accountUpdateRequestDTO) {
+        AccountResponseDTO accountResponseDTO = accountService.update(id, accountUpdateRequestDTO);
+        return ResponseEntity.ok().body(accountResponseDTO);
+    }
+
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable UUID id) {
         accountService.delete(id);
         return ResponseEntity.noContent().build();
-    }
-
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<AccountResponseDTO> update(@PathVariable UUID id, @RequestBody AccountUpdateRequestDTO accountUpdateRequestDTO) {
-        Account account = accountService.update(id, accountUpdateRequestDTO);
-        AccountResponseDTO accountResponseDTO = new AccountResponseDTO(account);
-        return ResponseEntity.ok().body(accountResponseDTO);
     }
 
 }

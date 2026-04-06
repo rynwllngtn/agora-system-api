@@ -11,14 +11,14 @@ import java.util.UUID;
 @Service
 public interface UserService {
 
-    UserResponseDTO findById(UUID id);
+    User findById(UUID id);
+    User findReferenceById(UUID id);
+    UserResponseDTO findResponseById(UUID id);
 
     User insert(UserCreateRequestDTO userCreateRequestDTO);
 
+    UserResponseDTO update(UUID id, UserUpdateRequestDTO userUpdateRequestDTO);
+
     void delete(UUID id);
-
-    User update(UUID id, UserUpdateRequestDTO userUpdateRequestDTO);
-
-    User findUserById(UUID id);
 
 }

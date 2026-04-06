@@ -16,6 +16,6 @@ public interface UserRepository extends JpaRepository<User, UUID> {
                    FROM User AS u
                    WHERE u.id = :id
                    """)
-    Optional<UserResponseDTO> findUserById(@Param("id") UUID id);
+    Optional<UserResponseDTO> findResponseById(@Param("id") UUID id);
 
 }
