@@ -1,15 +1,20 @@
 package dev.rynwllngtn.agorasystem.exceptions.database;
 
-import dev.rynwllngtn.agorasystem.exceptions.AgoraSystemException;
+import lombok.Getter;
 
-public class DatabaseException extends AgoraSystemException {
+public class DatabaseException extends RuntimeException {
     public DatabaseException(String message) {
         super(message);
     }
 
+    @Getter
     public static class ResourceNotFoundException extends DatabaseException {
-        public ResourceNotFoundException(Object object) {
-            super("Resource not found: ID " + object);
+
+        private String className;
+
+        public ResourceNotFoundException(Class<?> className, Object id) {
+            this.className = className.getSimpleName();
+            super(String.format("%s com o ID: %s não foi encontrado!", className.getSimpleName(), id));
         }
     }
 

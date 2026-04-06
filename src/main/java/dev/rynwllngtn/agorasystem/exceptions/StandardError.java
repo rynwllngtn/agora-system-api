@@ -11,7 +11,7 @@ import java.time.Instant;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class StandardException {
+public class StandardError {
 
     private Instant timestamp;
     private Integer status;

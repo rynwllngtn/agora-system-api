@@ -16,6 +16,6 @@ public interface AccountRepository extends JpaRepository<Account, UUID> {
                    FROM Account AS a
                    WHERE a.id = :id
                    """)
-    Optional<AccountResponseDTO> findAccountById(@Param("id") UUID id);
+    Optional<AccountResponseDTO> findResponseById(@Param("id") UUID id);
 
 }

@@ -4,7 +4,7 @@ import dev.rynwllngtn.agorasystem.dtos.account.AccountCreateRequestDTO;
 import dev.rynwllngtn.agorasystem.dtos.account.AccountResponseDTO;
 import dev.rynwllngtn.agorasystem.dtos.account.AccountUpdateRequestDTO;
 import dev.rynwllngtn.agorasystem.entities.account.Account;
-import dev.rynwllngtn.agorasystem.exceptions.database.DatabaseException;
+import dev.rynwllngtn.agorasystem.exceptions.database.DatabaseException.*;
 import dev.rynwllngtn.agorasystem.repositories.account.AccountRepository;
 import dev.rynwllngtn.agorasystem.services.user.UserService;
 import jakarta.persistence.EntityNotFoundException;
@@ -24,26 +24,27 @@ public class AccountServiceImplementation implements AccountService {
     private UserService userService;
 
     @Override
-    public AccountResponseDTO findById(UUID id) {
-        Optional<AccountResponseDTO> user = accountRepository.findAccountById(id);
-        return user.orElseThrow(() -> new DatabaseException.ResourceNotFoundException(id));
+    public Account findById(UUID id) {
+        Optional<Account> account = accountRepository.findById(id);
+        return account.orElseThrow(() -> new ResourceNotFoundException(Account.class, id));
+    }
+
+    @Override
+    public AccountResponseDTO findResponseById(UUID id) {
+        Optional<AccountResponseDTO> accountResponseDTO = accountRepository.findResponseById(id);
+        return accountResponseDTO.orElseThrow(() -> new ResourceNotFoundException(Account.class, id));
     }
 
     @Override
     public Account insert(AccountCreateRequestDTO accountCreateRequestDTO) {
 
         Account account = accountCreateRequestDTO.getAccount();
-        account.setHolder(userService.findUserById(accountCreateRequestDTO.getHolder()));
+        account.setHolder(userService.findReferenceById(accountCreateRequestDTO.getHolder()));
         return accountRepository.save(account);
     }
 
     @Override
-    public void delete(UUID id) {
-        accountRepository.deleteById(id);
-    }
-
-    @Override
-    public Account update(UUID id, AccountUpdateRequestDTO accountUpdateRequestDTO) {
+    public AccountResponseDTO update(UUID id, AccountUpdateRequestDTO accountUpdateRequestDTO) {
 
         try {
             Account account = accountRepository.getReferenceById(id);
@@ -51,11 +52,22 @@ public class AccountServiceImplementation implements AccountService {
                            accountUpdateRequestDTO.getTransferLimit(),
                            accountUpdateRequestDTO.getTransferLimitCap());
 
-            return accountRepository.save(account);
+            accountRepository.save(account);
+            return new AccountResponseDTO(account);
         }
         catch (EntityNotFoundException e) {
-            throw new DatabaseException.ResourceNotFoundException(id);
+            throw new ResourceNotFoundException(Account.class, id);
         }
+    }
+
+    @Override
+    public void delete(UUID id) {
+
+        if (!accountRepository.existsById(id)) {
+            throw new ResourceNotFoundException(Account.class, id);
+        }
+
+        accountRepository.deleteById(id);
     }
 
 }
