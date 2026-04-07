@@ -56,7 +56,7 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public UserResponseDTO update(UUID id, UserUpdateRequestDTO userUpdateRequestDTO) {
+    public User update(UUID id, UserUpdateRequestDTO userUpdateRequestDTO) {
 
         IO.println(userUpdateRequestDTO);
         try {
@@ -66,8 +66,7 @@ public class UserServiceImplementation implements UserService {
                         userUpdateRequestDTO.getBirthDate(),
                         userUpdateRequestDTO.isActive());
 
-            userRepository.save(user);
-            return new UserResponseDTO(user);
+            return userRepository.save(user);
         }
         catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException(User.class, id);

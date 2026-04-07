@@ -6,6 +6,20 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.
 
 ---
 
+## [Unreleased]
+
+### Added
+- Consulta customizada *findResponseById* no `AccountRepository` para instanciar o DTO de resposta diretamente da base de dados.
+- Método *findReferenceById* no `UserService` para retornar o Proxy do Hibernate, otimizando relacionamentos entre domínios sem sobrecarregar o banco de dados.
+
+### Changed
+- Refatoração dos serviços `AccountService` e `UserService` para lançarem as exceções utilizando a nova assinatura baseada em classe.
+
+### Removed
+- Classe base redundante `AgoraSystemException`.
+
+---
+
 ## [0.3.1] - 2026-04-06
 
 ### Added

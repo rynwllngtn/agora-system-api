@@ -17,7 +17,7 @@ public interface UserService {
 
     User insert(UserCreateRequestDTO userCreateRequestDTO);
 
-    UserResponseDTO update(UUID id, UserUpdateRequestDTO userUpdateRequestDTO);
+    User update(UUID id, UserUpdateRequestDTO userUpdateRequestDTO);
 
     void delete(UUID id);
 

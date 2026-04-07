@@ -1,8 +1,6 @@
 package dev.rynwllngtn.agorasystem.services.account;
 
-import dev.rynwllngtn.agorasystem.dtos.account.AccountCreateRequestDTO;
-import dev.rynwllngtn.agorasystem.dtos.account.AccountResponseDTO;
-import dev.rynwllngtn.agorasystem.dtos.account.AccountUpdateRequestDTO;
+import dev.rynwllngtn.agorasystem.dtos.account.*;
 import dev.rynwllngtn.agorasystem.entities.account.Account;
 import dev.rynwllngtn.agorasystem.exceptions.database.DatabaseException.*;
 import dev.rynwllngtn.agorasystem.repositories.account.AccountRepository;
@@ -44,20 +42,19 @@ public class AccountServiceImplementation implements AccountService {
     }
 
     @Override
-    public AccountResponseDTO update(UUID id, AccountUpdateRequestDTO accountUpdateRequestDTO) {
+    public Account deposit(UUID id, DepositRequestDTO depositRequestDTO) {
 
-        try {
-            Account account = accountRepository.getReferenceById(id);
-            account.update(accountUpdateRequestDTO.getBalance(),
-                           accountUpdateRequestDTO.getTransferLimit(),
-                           accountUpdateRequestDTO.getTransferLimitCap());
+        Account account = accountRepository.getReferenceById(id);
+        account.deposit(depositRequestDTO.amount());
+        return accountRepository.save(account);
+    }
 
-            accountRepository.save(account);
-            return new AccountResponseDTO(account);
-        }
-        catch (EntityNotFoundException e) {
-            throw new ResourceNotFoundException(Account.class, id);
-        }
+    @Override
+    public Account withdrawal(UUID id, WithdrawalRequestDTO withdrawalRequestDTO) {
+
+        Account account = accountRepository.getReferenceById(id);
+        account.withdrawal(withdrawalRequestDTO.amount());
+        return accountRepository.save(account);
     }
 
     @Override

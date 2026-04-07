@@ -56,4 +56,15 @@ public abstract class Account {
         this.transferLimitCap = transferLimitCap;
     }
 
+    public void deposit(BigDecimal amount) {
+        balance = balance.add(amount);
+    }
+
+    public void withdrawal(BigDecimal amount) {
+
+        if (balance.compareTo(amount) >= 0) {
+            balance = balance.subtract(amount);
+        }
+    }
+
 }

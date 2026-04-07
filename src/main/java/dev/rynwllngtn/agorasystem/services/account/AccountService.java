@@ -1,8 +1,6 @@
 package dev.rynwllngtn.agorasystem.services.account;
 
-import dev.rynwllngtn.agorasystem.dtos.account.AccountCreateRequestDTO;
-import dev.rynwllngtn.agorasystem.dtos.account.AccountResponseDTO;
-import dev.rynwllngtn.agorasystem.dtos.account.AccountUpdateRequestDTO;
+import dev.rynwllngtn.agorasystem.dtos.account.*;
 import dev.rynwllngtn.agorasystem.entities.account.Account;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +15,8 @@ public interface AccountService {
 
     Account insert(AccountCreateRequestDTO accountCreateRequestDTO);
 
-    AccountResponseDTO update(UUID id, AccountUpdateRequestDTO accountUpdateRequestDTO);
+    Account deposit(UUID id, DepositRequestDTO depositRequestDTO);
+    Account withdrawal(UUID id, WithdrawalRequestDTO withdrawalRequestDTO);
 
     void delete(UUID id);
 

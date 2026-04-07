@@ -2,7 +2,8 @@ package dev.rynwllngtn.agorasystem.controllers.account;
 
 import dev.rynwllngtn.agorasystem.dtos.account.AccountCreateRequestDTO;
 import dev.rynwllngtn.agorasystem.dtos.account.AccountResponseDTO;
-import dev.rynwllngtn.agorasystem.dtos.account.AccountUpdateRequestDTO;
+import dev.rynwllngtn.agorasystem.dtos.account.DepositRequestDTO;
+import dev.rynwllngtn.agorasystem.dtos.account.WithdrawalRequestDTO;
 import dev.rynwllngtn.agorasystem.entities.account.Account;
 import dev.rynwllngtn.agorasystem.services.account.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,15 +30,20 @@ public class AccountController {
     @PostMapping
     public ResponseEntity<AccountResponseDTO> insert(@RequestBody AccountCreateRequestDTO accountCreateRequestDTO) {
         Account account = accountService.insert(accountCreateRequestDTO);
-        AccountResponseDTO accountResponseDTO = new AccountResponseDTO(account);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(account.getId()).toUri();
-        return ResponseEntity.created(uri).body(accountResponseDTO);
+        return ResponseEntity.created(uri).body(new AccountResponseDTO(account));
     }
 
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<AccountResponseDTO> update(@PathVariable UUID id, @RequestBody AccountUpdateRequestDTO accountUpdateRequestDTO) {
-        AccountResponseDTO accountResponseDTO = accountService.update(id, accountUpdateRequestDTO);
-        return ResponseEntity.ok().body(accountResponseDTO);
+    @PostMapping(value = "/{id}/deposit")
+    public ResponseEntity<AccountResponseDTO> deposit(@PathVariable UUID id, @RequestBody DepositRequestDTO depositRequestDTO) {
+        Account account = accountService.deposit(id,depositRequestDTO);
+        return ResponseEntity.ok().body(new AccountResponseDTO(account));
+    }
+
+    @PostMapping(value = "/{id}/withdrawal")
+    public ResponseEntity<AccountResponseDTO> withdrawal(@PathVariable UUID id, @RequestBody WithdrawalRequestDTO withdrawalRequestDTO) {
+        Account account = accountService.withdrawal(id,withdrawalRequestDTO);
+        return ResponseEntity.ok().body(new AccountResponseDTO(account));
     }
 
     @DeleteMapping(value = "/{id}")
