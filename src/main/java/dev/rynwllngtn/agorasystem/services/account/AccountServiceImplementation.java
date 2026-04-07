@@ -5,9 +5,12 @@ import dev.rynwllngtn.agorasystem.dtos.account.AccountResponseDTO;
 import dev.rynwllngtn.agorasystem.dtos.account.DepositRequestDTO;
 import dev.rynwllngtn.agorasystem.dtos.account.WithdrawalRequestDTO;
 import dev.rynwllngtn.agorasystem.entities.account.Account;
+import dev.rynwllngtn.agorasystem.entities.user.User;
+import dev.rynwllngtn.agorasystem.exceptions.business.BusinessException.*;
 import dev.rynwllngtn.agorasystem.exceptions.database.DatabaseException.ResourceNotFoundException;
 import dev.rynwllngtn.agorasystem.repositories.account.AccountRepository;
 import dev.rynwllngtn.agorasystem.services.user.UserService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,27 +39,34 @@ public class AccountServiceImplementation implements AccountService {
     }
 
     @Override
-    public Account insert(AccountCreateRequestDTO accountCreateRequestDTO) {
-
-        Account account = accountCreateRequestDTO.getAccount();
-        account.setHolder(userService.findReferenceById(accountCreateRequestDTO.holder()));
+    public Account insert(AccountCreateRequestDTO createRequestDTO) {
+        Account account = createRequestDTO.getAccount();
+        account.setHolder(userService.findReferenceById(createRequestDTO.holder()));
         return accountRepository.save(account);
     }
 
     @Override
     public Account deposit(UUID id, DepositRequestDTO depositRequestDTO) {
-
-        Account account = accountRepository.getReferenceById(id);
-        account.deposit(depositRequestDTO.amount());
-        return accountRepository.save(account);
+        try {
+            Account account = accountRepository.getReferenceById(id);
+            account.deposit(depositRequestDTO.amount());
+            return accountRepository.save(account);
+        }
+        catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException(Account.class, id);
+        }
     }
 
     @Override
     public Account withdrawal(UUID id, WithdrawalRequestDTO withdrawalRequestDTO) {
-
-        Account account = accountRepository.getReferenceById(id);
-        account.withdrawal(withdrawalRequestDTO.amount());
-        return accountRepository.save(account);
+        try {
+            Account account = accountRepository.getReferenceById(id);
+            account.withdrawal(withdrawalRequestDTO.amount());
+            return accountRepository.save(account);
+        }
+        catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException(Account.class, id);
+        }
     }
 
 }

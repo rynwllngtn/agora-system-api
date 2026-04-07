@@ -42,23 +42,23 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public User insert(UserCreateRequestDTO userCreateRequestDTO) {
-        User user = new User(userCreateRequestDTO.cpf(),
-                             userCreateRequestDTO.password(),
-                             userCreateRequestDTO.userName(),
-                             userCreateRequestDTO.birthDate());
+    public User insert(UserCreateRequestDTO createRequestDTO) {
+        User user = new User(createRequestDTO.cpf(),
+                             createRequestDTO.password(),
+                             createRequestDTO.userName(),
+                             createRequestDTO.birthDate());
 
         return userRepository.save(user);
     }
 
     @Override
-    public User update(UUID id, UserUpdateRequestDTO userUpdateRequestDTO) {
+    public User update(UUID id, UserUpdateRequestDTO updateRequestDTO) {
         try {
             User user = userRepository.getReferenceById(id);
-            user.update(userUpdateRequestDTO.password(),
-                        userUpdateRequestDTO.userName(),
-                        userUpdateRequestDTO.birthDate(),
-                        userUpdateRequestDTO.status());
+            user.update(updateRequestDTO.password(),
+                        updateRequestDTO.userName(),
+                        updateRequestDTO.birthDate(),
+                        updateRequestDTO.status());
 
             return userRepository.save(user);
         }

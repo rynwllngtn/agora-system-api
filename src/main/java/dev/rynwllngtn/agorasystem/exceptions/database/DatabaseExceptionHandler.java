@@ -1,12 +1,12 @@
 package dev.rynwllngtn.agorasystem.exceptions.database;
 
 import dev.rynwllngtn.agorasystem.exceptions.StandardError;
+import dev.rynwllngtn.agorasystem.exceptions.database.DatabaseException.ResourceNotFoundException;
+import dev.rynwllngtn.agorasystem.exceptions.database.DatabaseException.UserConstraintException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
-
-import dev.rynwllngtn.agorasystem.exceptions.database.DatabaseException.*;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.time.Instant;

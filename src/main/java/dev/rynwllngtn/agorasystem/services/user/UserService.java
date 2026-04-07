@@ -15,9 +15,9 @@ public interface UserService {
     User findReferenceById(UUID id);
     UserResponseDTO findResponseById(UUID id);
 
-    User insert(UserCreateRequestDTO dto);
+    User insert(UserCreateRequestDTO createRequestDTO);
 
-    User update(UUID id, UserUpdateRequestDTO dto);
+    User update(UUID id, UserUpdateRequestDTO updateRequestDTO);
 
     User deactivate(UUID id);
     User reactivate(UUID id);

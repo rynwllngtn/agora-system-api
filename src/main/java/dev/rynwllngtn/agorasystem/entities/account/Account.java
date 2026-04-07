@@ -2,6 +2,8 @@ package dev.rynwllngtn.agorasystem.entities.account;
 
 import dev.rynwllngtn.agorasystem.entities.user.User;
 import dev.rynwllngtn.agorasystem.enums.account.AccountType;
+import dev.rynwllngtn.agorasystem.exceptions.business.BusinessException.InsufficientFundsException;
+import dev.rynwllngtn.agorasystem.exceptions.business.BusinessException.InvalidAmountException;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -57,14 +59,25 @@ public abstract class Account {
     }
 
     public void deposit(BigDecimal amount) {
+        if (amount.compareTo(BigDecimal.ZERO) < 0) {
+            throw new InvalidAmountException(amount.toString());
+        }
+        if (amount.compareTo(BigDecimal.ZERO) == 0) {
+            throw new InvalidAmountException(amount.toString());
+        }
+
         balance = balance.add(amount);
     }
 
     public void withdrawal(BigDecimal amount) {
-
-        if (balance.compareTo(amount) >= 0) {
-            balance = balance.subtract(amount);
+        if (balance.compareTo(amount) < 0) {
+            throw new InsufficientFundsException(amount.toString());
         }
+        if (amount.compareTo(BigDecimal.ZERO) == 0) {
+            throw new InvalidAmountException(amount.toString());
+        }
+
+        balance = balance.subtract(amount);
     }
 
 }
