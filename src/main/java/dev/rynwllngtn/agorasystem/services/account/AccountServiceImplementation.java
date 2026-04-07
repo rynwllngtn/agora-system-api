@@ -1,11 +1,13 @@
 package dev.rynwllngtn.agorasystem.services.account;
 
-import dev.rynwllngtn.agorasystem.dtos.account.*;
+import dev.rynwllngtn.agorasystem.dtos.account.AccountCreateRequestDTO;
+import dev.rynwllngtn.agorasystem.dtos.account.AccountResponseDTO;
+import dev.rynwllngtn.agorasystem.dtos.account.DepositRequestDTO;
+import dev.rynwllngtn.agorasystem.dtos.account.WithdrawalRequestDTO;
 import dev.rynwllngtn.agorasystem.entities.account.Account;
-import dev.rynwllngtn.agorasystem.exceptions.database.DatabaseException.*;
+import dev.rynwllngtn.agorasystem.exceptions.database.DatabaseException.ResourceNotFoundException;
 import dev.rynwllngtn.agorasystem.repositories.account.AccountRepository;
 import dev.rynwllngtn.agorasystem.services.user.UserService;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +39,7 @@ public class AccountServiceImplementation implements AccountService {
     public Account insert(AccountCreateRequestDTO accountCreateRequestDTO) {
 
         Account account = accountCreateRequestDTO.getAccount();
-        account.setHolder(userService.findReferenceById(accountCreateRequestDTO.getHolder()));
+        account.setHolder(userService.findReferenceById(accountCreateRequestDTO.holder()));
         return accountRepository.save(account);
     }
 
@@ -55,16 +57,6 @@ public class AccountServiceImplementation implements AccountService {
         Account account = accountRepository.getReferenceById(id);
         account.withdrawal(withdrawalRequestDTO.amount());
         return accountRepository.save(account);
-    }
-
-    @Override
-    public void delete(UUID id) {
-
-        if (!accountRepository.existsById(id)) {
-            throw new ResourceNotFoundException(Account.class, id);
-        }
-
-        accountRepository.deleteById(id);
     }
 
 }

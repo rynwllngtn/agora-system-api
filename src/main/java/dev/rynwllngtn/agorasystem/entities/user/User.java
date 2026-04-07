@@ -1,5 +1,6 @@
 package dev.rynwllngtn.agorasystem.entities.user;
 
+import dev.rynwllngtn.agorasystem.enums.user.UserStatus;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -35,22 +36,27 @@ public class User {
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private boolean active;
+    private UserStatus status;
 
     public User(String cpf, String password, String userName, LocalDate birthDate) {
         this.cpf = cpf;
         this.password = password;
         this.userName = userName;
         this.birthDate = birthDate;
-        active = true;
+        status = UserStatus.ACTIVE;
     }
 
-    public void update(String password, String userName, LocalDate birthDate, boolean active) {
+    public void update(String password, String userName, LocalDate birthDate, UserStatus status) {
         this.password = password;
         this.userName = userName;
         this.birthDate = birthDate;
-        this.active = active;
+        this.status = status;
     }
+
+    public void deactivate() { status = UserStatus.CLOSED; }
+
+    public void reactivate() { status = UserStatus.ACTIVE; }
 
 }

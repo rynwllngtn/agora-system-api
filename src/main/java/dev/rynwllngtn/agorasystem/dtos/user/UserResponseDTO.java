@@ -1,25 +1,19 @@
 package dev.rynwllngtn.agorasystem.dtos.user;
 
 import dev.rynwllngtn.agorasystem.entities.user.User;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import dev.rynwllngtn.agorasystem.enums.user.UserStatus;
 
 import java.time.LocalDate;
 
-@Getter
-@Setter
-@AllArgsConstructor
-public class UserResponseDTO {
-
-    private String userName;
-    private LocalDate birthDate;
-    private boolean active;
-
+public record UserResponseDTO(
+        String userName,
+        LocalDate birthDate,
+        UserStatus status
+) {
     public UserResponseDTO(User user) {
-        userName = user.getUserName();
-        birthDate = user.getBirthDate();
-        active = user.isActive();
+        this(user.getUserName(),
+             user.getBirthDate(),
+             user.getStatus());
     }
 
 }

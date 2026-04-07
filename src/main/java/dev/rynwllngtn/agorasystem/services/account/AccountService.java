@@ -18,6 +18,4 @@ public interface AccountService {
     Account deposit(UUID id, DepositRequestDTO depositRequestDTO);
     Account withdrawal(UUID id, WithdrawalRequestDTO withdrawalRequestDTO);
 
-    void delete(UUID id);
-
 }

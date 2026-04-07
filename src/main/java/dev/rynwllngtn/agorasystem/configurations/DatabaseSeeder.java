@@ -3,6 +3,7 @@ package dev.rynwllngtn.agorasystem.configurations;
 import dev.rynwllngtn.agorasystem.entities.account.accounts.AccountChecking;
 import dev.rynwllngtn.agorasystem.entities.account.accounts.AccountSaving;
 import dev.rynwllngtn.agorasystem.entities.user.User;
+import dev.rynwllngtn.agorasystem.enums.user.UserStatus;
 import dev.rynwllngtn.agorasystem.repositories.account.AccountRepository;
 import dev.rynwllngtn.agorasystem.repositories.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class DatabaseSeeder implements CommandLineRunner {
     private AccountRepository accountRepository;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
 
         if (userRepository.count() > 0) {
             return;
@@ -34,8 +35,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         for (int i = 1; i <= 10; i++) {
 
             User user = buildUser(String.format("%011d", random.nextInt(1000000000)),
-                                  String.format("User Number %d", i),
-                                  String.format("user%d@email.com", i));
+                                  String.format("User Number %d", i));
 
             userRepository.save(user);
 
@@ -73,12 +73,13 @@ public class DatabaseSeeder implements CommandLineRunner {
         }
     }
 
-    private User buildUser(String cpf, String name, String email) {
+    private User buildUser(String cpf, String name) {
         User user = new User();
         user.setCpf(cpf);
         user.setPassword("password");
         user.setUserName(name);
         user.setBirthDate(LocalDate.now());
+        user.setStatus(UserStatus.ACTIVE);
         return user;
     }
 

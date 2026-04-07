@@ -4,7 +4,7 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL,
     user_name VARCHAR(255),
     birth_date DATE NOT NULL,
-    active BOOLEAN NOT NULL
+    status VARCHAR(16) NOT NULL
 );
 
 CREATE TABLE accounts (

@@ -8,21 +8,17 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 
-@Getter
-@Setter
-@AllArgsConstructor
-public class AccountResponseDTO {
-
-    private BigDecimal balance;
-    private BigDecimal transferLimit;
-    private BigDecimal transferLimitCap;
-    private AccountType accountType;
-
+public record AccountResponseDTO(
+        BigDecimal balance,
+        BigDecimal transferLimit,
+        BigDecimal transferLimitCap,
+        AccountType accountType
+) {
     public AccountResponseDTO(Account account) {
-        balance = account.getBalance();
-        transferLimit = account.getTransferLimit();
-        transferLimitCap = account.getTransferLimitCap();
-        accountType = account.getAccountType();
+        this(account.getBalance(),
+             account.getTransferLimit(),
+             account.getTransferLimitCap(),
+             account.getAccountType());
     }
 
 }

@@ -1,19 +1,12 @@
 package dev.rynwllngtn.agorasystem.dtos.user;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import dev.rynwllngtn.agorasystem.enums.user.UserStatus;
 
 import java.time.LocalDate;
 
-@Getter
-@Setter
-@AllArgsConstructor
-public class UserUpdateRequestDTO {
-
-    private String password;
-    private String userName;
-    private LocalDate birthDate;
-    private boolean active;
-
-}
+public record UserUpdateRequestDTO(
+        String password,
+        String userName,
+        LocalDate birthDate,
+        UserStatus status
+) {}

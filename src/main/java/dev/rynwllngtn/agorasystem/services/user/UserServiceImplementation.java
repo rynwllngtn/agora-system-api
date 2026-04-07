@@ -4,12 +4,10 @@ import dev.rynwllngtn.agorasystem.dtos.user.UserCreateRequestDTO;
 import dev.rynwllngtn.agorasystem.dtos.user.UserResponseDTO;
 import dev.rynwllngtn.agorasystem.dtos.user.UserUpdateRequestDTO;
 import dev.rynwllngtn.agorasystem.entities.user.User;
-import dev.rynwllngtn.agorasystem.exceptions.database.DatabaseException.UserConstraintException;
 import dev.rynwllngtn.agorasystem.exceptions.database.DatabaseException.ResourceNotFoundException;
 import dev.rynwllngtn.agorasystem.repositories.user.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -29,7 +27,6 @@ public class UserServiceImplementation implements UserService {
 
     @Override
     public User findReferenceById(UUID id) {
-
         try {
             return userRepository.getReferenceById(id);
         }
@@ -46,25 +43,22 @@ public class UserServiceImplementation implements UserService {
 
     @Override
     public User insert(UserCreateRequestDTO userCreateRequestDTO) {
-
-        User user = new User(userCreateRequestDTO.getCpf(),
-                             userCreateRequestDTO.getPassword(),
-                             userCreateRequestDTO.getUserName(),
-                             userCreateRequestDTO.getBirthDate());
+        User user = new User(userCreateRequestDTO.cpf(),
+                             userCreateRequestDTO.password(),
+                             userCreateRequestDTO.userName(),
+                             userCreateRequestDTO.birthDate());
 
         return userRepository.save(user);
     }
 
     @Override
     public User update(UUID id, UserUpdateRequestDTO userUpdateRequestDTO) {
-
-        IO.println(userUpdateRequestDTO);
         try {
             User user = userRepository.getReferenceById(id);
-            user.update(userUpdateRequestDTO.getPassword(),
-                        userUpdateRequestDTO.getUserName(),
-                        userUpdateRequestDTO.getBirthDate(),
-                        userUpdateRequestDTO.isActive());
+            user.update(userUpdateRequestDTO.password(),
+                        userUpdateRequestDTO.userName(),
+                        userUpdateRequestDTO.birthDate(),
+                        userUpdateRequestDTO.status());
 
             return userRepository.save(user);
         }
@@ -75,17 +69,26 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public void delete(UUID id) {
-
-        if (!userRepository.existsById(id)) {
+    public User deactivate(UUID id) {
+        try {
+            User user = userRepository.getReferenceById(id);
+            user.deactivate();
+            return userRepository.save(user);
+        }
+        catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException(User.class, id);
         }
+    }
 
+    @Override
+    public User reactivate(UUID id) {
         try {
-            userRepository.deleteById(id);
+            User user = userRepository.getReferenceById(id);
+            user.reactivate();
+            return userRepository.save(user);
         }
-        catch (DataIntegrityViolationException e) {
-            throw new UserConstraintException(e.getMessage());
+        catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException(User.class, id);
         }
     }
 

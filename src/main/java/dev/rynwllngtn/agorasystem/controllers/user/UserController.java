@@ -39,10 +39,16 @@ public class UserController {
         return ResponseEntity.ok().body(new UserResponseDTO(user));
     }
 
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable UUID id) {
-        userService.delete(id);
-        return ResponseEntity.noContent().build();
+    @PatchMapping(value = "/{id}/deactivate")
+    public ResponseEntity<UserResponseDTO> deactivate(@PathVariable UUID id) {
+        User user = userService.deactivate(id);
+        return ResponseEntity.ok().body(new UserResponseDTO(user));
+    }
+
+    @PatchMapping(value = "/{id}/reactivate")
+    public ResponseEntity<UserResponseDTO> reactivate(@PathVariable UUID id) {
+        User user = userService.reactivate(id);
+        return ResponseEntity.ok().body(new UserResponseDTO(user));
     }
 
 }

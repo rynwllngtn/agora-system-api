@@ -12,7 +12,7 @@ import java.util.UUID;
 public interface UserRepository extends JpaRepository<User, UUID> {
 
     @Query(value = """
-                   SELECT NEW dev.rynwllngtn.agorasystem.dtos.user.UserResponseDTO(u.userName, u.birthDate, u.active)
+                   SELECT NEW dev.rynwllngtn.agorasystem.dtos.user.UserResponseDTO(u.userName, u.birthDate, u.status)
                    FROM User AS u
                    WHERE u.id = :id
                    """)

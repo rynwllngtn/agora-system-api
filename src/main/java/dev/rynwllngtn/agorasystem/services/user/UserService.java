@@ -15,10 +15,11 @@ public interface UserService {
     User findReferenceById(UUID id);
     UserResponseDTO findResponseById(UUID id);
 
-    User insert(UserCreateRequestDTO userCreateRequestDTO);
+    User insert(UserCreateRequestDTO dto);
 
-    User update(UUID id, UserUpdateRequestDTO userUpdateRequestDTO);
+    User update(UUID id, UserUpdateRequestDTO dto);
 
-    void delete(UUID id);
+    User deactivate(UUID id);
+    User reactivate(UUID id);
 
 }

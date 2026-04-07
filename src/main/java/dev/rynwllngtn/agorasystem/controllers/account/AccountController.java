@@ -46,10 +46,4 @@ public class AccountController {
         return ResponseEntity.ok().body(new AccountResponseDTO(account));
     }
 
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable UUID id) {
-        accountService.delete(id);
-        return ResponseEntity.noContent().build();
-    }
-
 }
